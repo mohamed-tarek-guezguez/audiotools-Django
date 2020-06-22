@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+* {
+    box-sizing: border-box;
+}
+
+.liTag, .aTag {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    color: #edf0f1;
+    text-decoration: none;
+    border: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    box-shadow:2px 2px 6px #2196F3;
+    background-color: rgba(32, 32, 36, 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 2;
+}
+
+.logo {
+    cursor: pointer;
+    border-radius: 75%;
+
+}
+
+.nav_links {
+    list-style: none;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #32B5F3;
+}
+
+#btnsearchicon {
+    padding: 9px 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+#btnsearchicon:hover {
+    color: #32B5F3;
+}
+
+#marginThisThing {
+    margin-top: 150px;
+}
+
+.mobile-container {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    header {
+        display: none;
+    }
+
+    .mobile-container {
+        display: block;
+    }
+
+    .mobile-container {
+        margin: auto;
+        background-color: #2C2C32;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #2C2C32;
+        position: relative;
+        box-shadow:2px 2px 6px #2196F3;
+    }
+
+    .topnav #myLinks {
+        display: none;
+    }
+
+    .topnav a {
+        font-family: "Montserrat", sans-serif;
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 12px;
+        display: block;
+        text-decoration: none;
+        border: none;
+    }
+
+    .topnav a.icon {
+        background-color: rgba(32, 32, 36, 1);
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        text-align: center;
+    }
+
+    .active {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #marginThisThing {
+        margin-top: 100px;
+    }
+
+    .icon {
+        color: white !important;
+    }
+}

@@ -1,0 +1,39 @@
+{% extends 'baseLayout.html' %}
+{% load static %}
+
+    {% block content %}
+        <main style="text-align: left; margin-top: 150px;" id="detailMain">
+
+            <h1 id="detailH1">{{ prod.Title }}</h1>
+
+            <center>
+                <img src="{{prod.Img.url}}" alt="" id="detailImg">
+            </center>
+
+            <h1 style="line-height: 2;">{{ prod.Description | safe }}</h1>
+
+            <center>
+                <ul style="display: block; list-style-type: none; margin-top: 100px; margin-bottom: 100px;">
+
+                    <li style="margin-bottom: 50px;" class="bottonMargin">
+                        <a href="{{ prod.link1 }}" class="button style2 fit" target="_blank" style="text-transform: uppercase;">Download From {{ prod.linkTitle1 }}</a>
+                    </li>
+                    {% if prod.link2|length %}
+                    <li class="bottonMargin">
+                        <a href="{{ prod.link2 }}" class="button style3 fit" target="_blank" style="text-transform: uppercase;">Download From {{ prod.linkTitle2 }}</a>
+                    </li>
+                    {% endif %}
+                    
+                </ul>
+            </center>
+
+            <center>
+                {% if prod.youtubeEmbed|length %}
+                <div class="iframe-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ prod.youtubeEmbed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                {% endif %}
+            </center>
+
+        </main>
+    {% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'baseLayout.html' %}
+{% load static %}
+
+    {% block content %}
+			
+
+			<!-- section Start -->
+			<section id="marginThisThing">
+				<center>
+					<h2 id="topBigTitle">ONLINE <span id="blueTxtColor">AUDIO TOOLS</span></h2>
+					<p id="descPage" style="color: #ddd;">Welcome, On This WebSite You Will Find Drum Kit, Midi Kit, Sample Pack, Preset, Daw, Plugin, Tutorial, ...</p>
+				</center>
+			</section>
+
+			<center>
+				<form method="get" style="display: none;">
+					<input type="text" name="q" id="id_Title__icontains">
+					<button id="btnClickCategory" type="submit">Search</button>
+				</form>
+
+				<div style="margin: auto;">
+					<input type="text" placeholder="🔎 Search" id="searchInput" onkeyup="mySearchFunction()" style="color: #ddd; text-align: center; height: 50px; max-width: 600px; min-width: 200px;">
+				</div>
+			</center>
+			
+			<!-- section End -->
+
+			<!-- Main -->
+				<div id="main">
+					<div class="inner">
+
+					<!-- Boxes -->
+						<div class="thumbnails">
+							{% for prod in prods %}
+							<!-- button fit , button style2 fit , button style3 fit -->
+							<div class="box" data-aos="fade-up">
+								<a href="{% url 'prodDetail' slug=prod.Slug %}" class="image fit"><img src="{{prod.Img.url}}" style="height: 320px;" alt="" /></a>
+								<div class="inner">
+									{% if prod.Title|length > 36 %}
+										<h3>{{ prod.Title }}</h3>
+									{% else %}
+										<h3>{{ prod.Title }}</h3>
+										<br>
+									{% endif %}
+
+									{% if prod.Category %}
+										<p>{{ prod.Category }}</p>
+									{% endif %}
+									<a href="{% url 'prodDetail' slug=prod.Slug %}" class="{% if prod.btnColor == 2 %}button fit{% elif prod.btnColor == 1 %}button style3 fit{% else %}button style2 fit{% endif %}">View More</a>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+			<!-- Load more -->
+            <div class="center" style="margin-top: 50px;">
+                {% if prods.has_other_pages %}
+                <div class="pagination" id="p_manu_num">
+                    {% if prods.has_previous %}
+                            <a href="?{% if query %}Category__contains={{ query }}&{% endif %}{% if tquery %}q={{ tquery }}&{% endif %}page={{ prods.previous_page_number }}">
+                                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                            </a>
+                    {% endif %}
+
+                    {% for i in prods.paginator.page_range %}
+                        {% if prods.number == i %}
+							<a class="pagination-current">{{ i }}</a>
+                        {% elif prods.number >= i|add:is_mobile_negative and prods.number <= i|add:is_mobile %}
+                            <a href="?{% if query %}Category__contains={{ query }}&{% endif %}{% if tquery %}q={{ tquery }}&{% endif %}page={{ i }}">{{ i }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if prods.has_next %}
+                            <a href="?{% if query %}Category__contains={{ query }}&{% endif %}{% if tquery %}q={{ tquery }}&{% endif %}page={{ prods.next_page_number }}">
+                                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                            </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+			</div>
+	{% endblock %}

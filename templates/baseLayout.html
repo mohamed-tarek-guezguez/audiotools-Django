@@ -1,0 +1,258 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Free Audio</title>
+        <link rel="icon" href="{% static 'icon.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/aos.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/pagination.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'assets/css/contactStyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/styleNew.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/detailStyle.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/navbar.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body::-webkit-scrollbar {
+                width: 4px;
+            }
+            body::-webkit-scrollbar-track {
+                background: #1e1e24;
+            }
+            body::-webkit-scrollbar-thumb {
+                background: #6649b8;
+            }
+            .iframe-container {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; 
+                height: 0;
+            }
+            .iframe-container iframe {
+                position: absolute;
+                top:0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .fafaIcons {
+                color: #ddd;
+                margin: 0 6px;
+                border:0;
+            }
+            .faFb:hover {
+                color: #4064AC;
+                width: 1.5em;
+            }
+            .faIn:hover {
+                color: #B52E8D;
+            }
+            .faYt:hover {
+                color: #A00009;
+            }
+        </style>
+	</head>
+	<body id="top">
+
+    <!-- Banner-->
+    <form method="get" style="display: none">
+        {{myCatFilter.form}}
+        <button id="btnClickCategoryForm" type="submit">Category Search</button>
+    </form>
+    
+    <header>
+        <a class="aTag" href="{% url 'homePage' %}"><img class="logo" src="{% static 'icon.ico' %}" alt="logo" style="width: 32px;"></a>
+        <nav>
+            <ul class="nav_links" style="margin-top: 25px;">
+                <li class="liTag"><a href="javascript:void(0);" onclick="filtringCategory('drumKit')" class="aTag">DRUM KIT</a></li>
+                <li class="liTag"><a href="javascript:void(0);" onclick="filtringCategory('midiKit')" class="aTag">MIDI KIT</a></li>
+                <li class="liTag"><a href="javascript:void(0);" onclick="filtringCategory('samplePack')" class="aTag">LOOP KIT</a></li>
+                <li class="liTag"><a href="javascript:void(0);" onclick="filtringCategory('preset')" class="aTag">PRESET</a></li>
+                <li class="liTag"><a href="javascript:void(0);" onclick="filtringCategory('dawPlugin')" class="aTag">DAW & PLUGIN</a></li>
+                <li class="liTag"><a href="javascript:void(0);" onclick="filtringCategory('tutorial')" class="aTag">TUTORIAL</a></li>
+                <li class="liTag"><a href="javascript:void(0);" onclick="contactFocus()" class="aTag">CONTACT US</a></li>
+            </ul>
+        </nav>
+        <a class="cta aTag" href="javascript:void(0);" onclick="searchFocus()"><i class="fa fa-search" id="btnsearchicon" aria-hidden="true"></i></a>
+    </header>
+
+    <div class="mobile-container" style="position: fixed; width: 100%; top: 0px; z-index: 2;">
+        <div class="topnav">
+            <a href="{% url 'homePage' %}" class="active">HOME</a>
+            <div id="myLinks">
+                <a href="{% url 'homePage' %}">HOME</a>
+                <a href="javascript:void(0);" onclick="filtringCategory('drumKit')">DRUM KIT</a>
+                <a href="javascript:void(0);" onclick="filtringCategory('midiKit')">MIDI KIT</a>
+                <a href="javascript:void(0);" onclick="filtringCategory('samplePack')">SAMPLE PACK</a>
+                <a href="javascript:void(0);" onclick="filtringCategory('preset')">PRESET</a>
+                <a href="javascript:void(0);" onclick="filtringCategory('dawPlugin')">DAW & PLUGIN</a>
+                <a href="javascript:void(0);" onclick="filtringCategory('tutorial')">TUTORIAL</a>
+                <a href="javascript:void(0);" onclick="contactFocus()">CONTACT US</a>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </div>   
+
+
+{% block content %}
+{% endblock %}
+
+    <!-- contact -->
+    <form id="my_form" method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div style="display: none;">
+            {{ form.as_p }}
+        </div>
+        <div id="main">
+            <div class="inner">
+                <center><hr id="contactLigne"></center>
+                <center><h2 id="contactTitle">LEAVE <span style="color: #32B5F3;">A MESSAGE</span></h2></center>
+            <!-- Boxes -->
+                <div class="thumbnails">
+
+                    <div class="box" style="background-color: #202024;">
+                        <center>
+                            <ul id="contactUl">
+                                <input type="text" placeholder="Your Name" name="name" id="name" onkeyup="myNameFunction()" onmouseup="myNameFunction()">
+                                <input type="email" placeholder="Your Email" name="email" id="email" onkeyup="myEmailFunction()" onmouseup="myEmailFunction()">
+                                <input type="text" placeholder="Your phone" name="phone" id="phone" onkeyup="myPhoneFunction()" onmouseup="myPhoneFunction()">
+                            </ul>
+                        </center>
+                    </div>
+
+                    <div class="box">
+                        <textarea name="message" id="message" placeholder="Your Message" style="width:100%; height:100%;" onkeyup="myMessageFunction()" onmouseup="myMessageFunction()"></textarea>
+                    </div>
+                </div>
+                <center>
+                    <a href="javascript:{}" class="button fit" id="sendBtn" onclick="myTestFunction()" style="width: 150px; background-color: #3D79B8;">Send</a>
+                </center>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <Footer>
+            <center><hr id="footerTopLigne"></center>
+            <div class="row">
+                <div class="item1">
+                    <center>
+                        <h3 id="footerTitle">Link<span id="blueTxtColor">s</span></h3>
+                        <a href="{% url 'homePage' %}"><h5>Home</h5></a>
+                        <a href="javascript:void(0);" onclick="searchFocus()"><h5>Products</h5></a>
+                        <a href="javascript:void(0);" onclick="contactFocus()"><h5>Contact Us</h5></a>
+                        <div style="margin-top: 25px;">
+                            <a href="https://www.facebook.com/tarak.guezguez/" target="_blank" class="fafaIcons faFb"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                            <a href="https://www.instagram.com/tarekguezguez/" target="_blank" class="fafaIcons faIn"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a href="https://www.youtube.com/channel/UCgZcRIWJ6G2uqKu96X2NIQw" target="_blank" class="fafaIcons faYt"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                        </div>
+                    </center>
+                </div>
+                <div class="item2">
+                    <center>
+                        <h3 id="footerTitle">Be <span id="blueTxtColor">in the know</span></h3>
+                        <p id="descriptionSubs" style="margin: 0;">New Products . Directly to your inbox.</p>
+                        <input type="text" name="email" placeholder="Your email" id="emailInput" onkeyup="subsFunction()" onmouseup="subsFunction()" style="color: #ddd;">
+                        <a href="javascript:{}" class="button fit" id="subBtn" onclick="document.getElementById('my_form').submit();" style="width: 150px; padding: 0 20px 0 20px; background-color: #3D79B8; margin-top: 25px;">Subscribe</a>
+                    </center>
+                </div>
+            </div>
+            <hr id="footerBottomLigne">
+            <center>
+                <p id="footerCopyright">Copyright © 2020, Made With <span style="color: #A00009;"><i class="fa fa-heart" aria-hidden="true"></span></i> By <a href="https://www.facebook.com/tarak.guezguez" target="_blank" id="fbLink">GuezGuez Med.Tarek</a></p>
+            </center>
+        </Footer>
+    </form>
+
+    <!------------Mobile Menu Script------------>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myLinks");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+
+        function searchFocus() {
+            var x = document.getElementById("searchInput").focus();
+        }
+
+        function contactFocus() {
+            var x = document.getElementById("name").focus();
+            myFunction()
+        }
+
+        // search 
+        function mySearchFunction() {
+            document.getElementById("id_Title__icontains").value = document.getElementById("searchInput").value;
+        }
+
+        var inputSearch = document.getElementById("searchInput");
+        inputSearch.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                var btnClick = document.getElementById("btnClickCategory");
+                btnClick.click();
+            }
+        });
+        
+        //contact buttons start
+        function myNameFunction() {
+            document.getElementById("id_Name").value = document.getElementById("name").value;
+        }
+
+        function myEmailFunction() {
+            document.getElementById("id_Email").value = document.getElementById("email").value;
+        }
+        
+        function myPhoneFunction() {
+            document.getElementById("id_Phone").value = document.getElementById("phone").value;
+        }
+
+        function myMessageFunction() {
+            document.getElementById("id_Message").value = document.getElementById("message").value;
+        }
+
+        function myTestFunction() {
+            if (document.getElementById("id_Name").value == "") {
+                alert("Enter Your Name !");
+            }else if (document.getElementById("id_Email").value == "") {
+                alert("Enter Your Email !");
+            }else if (document.getElementById("id_Message").value == "") {
+                alert("Enter Your Message !");
+            }
+
+            if((document.getElementById("id_Name").value != "") && (document.getElementById("id_Email").value != "") && (document.getElementById("id_Message").value != "")) {
+                document.getElementById('my_form').submit();
+            }
+        }
+
+        function subsFunction() {
+            document.getElementById("id_Name").value = "Subscribe";
+            document.getElementById("id_Message").value = "Subscribe";
+            document.getElementById("id_Email").value = document.getElementById("emailInput").value;
+        }
+        //contact buttons end
+
+        function filtringCategory(x) {
+            myFunction()
+            document.getElementById("id_Category__contains").value = x;
+            var btnClick = document.getElementById("btnClickCategoryForm");
+            btnClick.click();
+        }
+    </script>
+
+    <!-- Scripts -->
+    
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/aos.js' %}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>AOS.init({duration: 1000,});</script>
+    </body>
+</html>

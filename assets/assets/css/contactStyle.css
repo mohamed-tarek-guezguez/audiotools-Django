@@ -1,0 +1,131 @@
+#contactUl {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#email {
+    margin-top: 15px;
+}
+
+#phone {
+    margin-top: 15px;
+}
+
+#message {
+    height: 154px;
+    padding: 15px;
+    resize: unset;
+    outline: none;
+    width: 100%;
+    float: left;
+    margin: 0;
+}
+
+#contactLigne {
+    width: 50%;
+    text-align:center;
+}
+
+/* Footer Start */
+Footer{
+    margin: 15px 180px 0 180px;
+}
+
+#footerTopLigne {
+    width: 75%;
+    margin: 0 0 50px 0;
+    text-align:center;
+}
+
+Footer a {
+    text-decoration: none;
+    color: #333;
+}
+
+#footerTitle {
+    margin-bottom: 25px;
+}
+
+Footer h5 {
+    margin-bottom: 12px;
+}
+
+Footer h5:hover {
+    color: darkgray;
+}
+
+.row {
+    display: flex;
+}
+
+.item1 {
+    width: 50%;
+}
+
+.item2 {
+    width: 50%;
+}
+
+#emailInput {
+    margin: 15px;
+    border: 0;
+    padding: 6px;
+    height: 25px;
+    font-weight: 400;
+    outline-color: #32B5F3;
+    width: 250px;
+    border: 1px solid #323233;
+}
+
+#subBtn:hover {
+    background-color: #5C5C5C;
+}
+
+#footerBottomLigne {
+    margin: 20px 0 50px 0;
+    text-align:center;
+}
+
+#footerCopyright {
+    color:  #ddd;
+    margin-bottom: 50px;
+    text-align:center;
+}
+
+#fbLink {
+    color: #3D79B8;
+}
+
+#fbLink:hover {
+    color: #395693;
+}
+
+#blueTxtColor {
+    color: #32B5F3;
+}
+
+@media screen and (max-width: 1024px) {
+    Footer{
+        margin: 15px 18px 0 18px;
+    }
+
+    .row {
+        display: block;
+    }
+
+    .item1 {
+        width: 100%;
+    }
+
+    .item2 {
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    #footerCopyright {
+        line-height: 1.6;
+    }
+    
+}
+/* Footer End */
